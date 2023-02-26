@@ -143,9 +143,9 @@ window.onload=function(){
         var base_uri = server_uri + path;
         document.getElementById("baseuri").value = base_uri;
         document.getElementById("serverinfofile").innerHTML = "{\n"+
-            "    \"start\":\""+base_uri+".spxp-spe/register\",\n"+
-            "    \"bind\":\""+base_uri+".spxp-spe/bind\",\n"+
-            "    \"managementEndpoint\":\""+base_uri+".spxp-pme\"\n"+
+            "    \"start\":\""+base_uri+"/spxp-spe/register\",\n"+
+            "    \"bind\":\""+base_uri+"/spxp-spe/bind\",\n"+
+            "    \"managementEndpoint\":\""+base_uri+"/spxp-pme\"\n"+
             "}";
             document.getElementById("servicefilename").innerHTML = server_uri + "/.well-known/spxp/spe-discovery";
     }
