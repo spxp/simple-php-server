@@ -34,6 +34,15 @@ if($pathParts[0] == '.spxp-pme') {
     require_once('pme.php');
     exit();
 }
+if(count($pathParts) == 3 && $pathParts[0] == '.well-known' && $pathParts[1] == 'spxp' && $pathParts[2] == 'spe-discovery') {
+    header('Content-Type: application/json');
+    echo json_encode(array(
+        'start' => $baseUri.'/.spxp-spe/register',
+        'bind' => $baseUri.'/.spxp-spe/bind',
+        'managementEndpoint' => $baseUri.'/.spxp-pme',
+    ));
+    exit();
+}
 
 if(count($pathParts) > 2) {
     http_response_code(404);

@@ -105,8 +105,11 @@ if(isset($_POST['act']) && isset($_POST['baseuri']) && isset($_POST['hostname'])
 function setupForm() {
 ?>
 <h3>1. Install service info</h3>
-Place  this file on your server as <span id='servicefilename'></span>
-<pre id='serverinfofile'></pre>
+<div id='noserviceinforequired' style='display: none;'>You are running in the server root. No additional steps required.</div>
+<div id='serviceinforequired' style='display: block;'>
+    Place  this file on your server as <span id='servicefilename'></span>
+    <pre id='serverinfofile'></pre>
+</div>
 <h3>2. Database setup</h3>
 <form method='POST' id='setupform'>
     <input type='hidden' name='act' value='setup'><br/>
@@ -147,7 +150,14 @@ window.onload=function(){
             "    \"bind\":\""+base_uri+"/.spxp-spe/bind\",\n"+
             "    \"managementEndpoint\":\""+base_uri+"/.spxp-pme\"\n"+
             "}";
-            document.getElementById("servicefilename").innerHTML = server_uri + "/.well-known/spxp/spe-discovery";
+        document.getElementById("servicefilename").innerHTML = server_uri + "/.well-known/spxp/spe-discovery";
+        if(path == '') {
+            document.getElementById("noserviceinforequired").style.display = "block";
+            document.getElementById("serviceinforequired").style.display = "none";
+        } else {
+            document.getElementById("noserviceinforequired").style.display = "none";
+            document.getElementById("serviceinforequired").style.display = "block";
+        }
     }
 };
 </script>
