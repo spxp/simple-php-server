@@ -140,7 +140,7 @@ function process_prepared_key($establishId, $audience, $group_name, $round_name,
             return 'err_invalid_jwk: missing kid';
         }
         if($header['kid'] != $audience) {
-            if(!(substr($header['kid'], strlen($audience)+1) === $audience.'.')) {
+            if(substr($header['kid'], 0, strlen($audience)+1) !== $audience.'.') {
                 return 'err_invalid_jwk: invalid kid';
             }
             $audience_round = substr($header['kid'], strlen($audience)+1);

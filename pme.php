@@ -18,7 +18,7 @@ if($pathParts[1] == 'auth') {
 }
 
 $authorization = empty($_SERVER['HTTP_AUTHORIZATION']) ? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] : $_SERVER['HTTP_AUTHORIZATION'];
-if(empty($authorization) || !str_starts_with($authorization, 'Bearer ')) {
+if(empty($authorization) || substr($authorization, 0, 7) !== 'Bearer ') {
     http_response_code(401);
     'Authorization header missing or invalid scheme';
     exit();

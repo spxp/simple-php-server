@@ -26,7 +26,7 @@ if(!isset($post_data) || !is_array($post_data) ||
 $profile_uri = $post_data['profile_uri'];
 $device_id = $post_data['device_id'];
 $timestamp = $post_data['timestamp'];
-if(!(substr($profile_uri, strlen($baseUri)+1) === $baseUri.'/')) {
+if(substr($profile_uri, 0, strlen($baseUri)+1) !== $baseUri.'/') {
     http_response_code(403);
     echo 'Invalid profile_uri';
     exit();

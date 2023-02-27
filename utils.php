@@ -45,7 +45,7 @@ function datetime_to_microtime($datetime) {
 }
 function microtime_to_datetime($microtime) {
     global $tzutc;
-    $timestamp = $microtime / 1000;
+    $timestamp = floor($microtime / 1000);
     $ms = $microtime % 1000;
     $dt_without_ms = fromTimestampUtc($timestamp);
     return DateTime::createFromFormat('Y-m-d\TH:i:s.v', $dt_without_ms->format('Y-m-d\TH:i:s').'.'.sprintf('%03d', $ms), $tzutc);
