@@ -26,12 +26,12 @@ if(!isset($post_data) || !is_array($post_data) ||
 $profile_uri = $post_data['profile_uri'];
 $device_id = $post_data['device_id'];
 $timestamp = $post_data['timestamp'];
-if(!str_starts_with($profile_uri, $baseUri.'/')) {
+if(!(substr($profile_uri, strlen($baseUri)+1) === $baseUri.'/')) {
     http_response_code(403);
     echo 'Invalid profile_uri';
     exit();
 }
-$profile_name = substr($profile_uri, strlen($baseUri)+1 );
+$profile_name = substr($profile_uri, strlen($baseUri)+1);
 if(strlen($profile_name) > 50) {
     http_response_code(403);
     echo 'Invalid profile_uri';
